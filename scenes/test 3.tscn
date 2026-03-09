@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfpk0gme10fwu"]
+
+[ext_resource type="Script" uid="uid://c3qi6t3u85m5f" path="res://scripts/csg_mesh_3d.gd" id="1_ju41e"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ju41e"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("ArrayMesh_ju41e")
+script = ExtResource("1_ju41e")
