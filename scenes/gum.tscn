@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctets4q1mp2lu"]
+
+[ext_resource type="Script" uid="uid://bdrpdecg15j0e" path="res://scripts/gum.gd" id="1_fng27"]
+[ext_resource type="Script" uid="uid://bnajprq2nargs" path="res://scripts/camera_movement.gd" id="2_un1fd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fng27"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sqxt7"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_fng27")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_fng27")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_sqxt7")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99072266, 0)
+spring_length = 3.0
+script = ExtResource("2_un1fd")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
