@@ -5,6 +5,9 @@ extends CharacterBody3D
 @onready var mesh = $Pivot/MeshInstance3D
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
+@onready var progressbar_sprite: Sprite3D = $ProgressbarSprite
+@onready var progress_bar: TextureProgressBar = $ProgressbarSprite/SubViewport/ProgressBar
+
 
 const SLOW_SPEED : float = 0.5
 const FAST_SPEED : float = 4.0
@@ -29,9 +32,12 @@ var speed : float = SLOW_SPEED
 var rolling = false
 
 func _ready() -> void:
-	mesh_original_scale = mesh.scale
-	
 	GameManager.player = self
+	
+	mesh_original_scale = mesh.scale
+	progress_bar.max_value = hold_left_mouse_btn_duration
+	progress_bar.step = hold_left_mouse_btn_duration / 100 
+	
 
 func _physics_process(delta):
 	if !in_transformation_modus && not is_on_floor():
@@ -40,10 +46,15 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if !in_transformation_modus && hold_left_mouse_btn:
+		progressbar_sprite.visible = true
 		current_hold_left_mouse_btn_duration += delta
+		progress_bar.value = current_hold_left_mouse_btn_duration
 		
 		if current_hold_left_mouse_btn_duration >= hold_left_mouse_btn_duration:
 			acces_transformation_mode()
+	else:
+		progress_bar.value = 0
+		progressbar_sprite.visible = false
 	
 	var forward = Vector3.FORWARD
 	if Input.is_action_pressed("move foward"):

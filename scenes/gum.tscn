@@ -1,28 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctets4q1mp2lu"]
+[gd_scene format=3 uid="uid://ctets4q1mp2lu"]
 
 [ext_resource type="Script" uid="uid://bdrpdecg15j0e" path="res://scripts/gum.gd" id="1_fng27"]
 [ext_resource type="Script" uid="uid://bnajprq2nargs" path="res://scripts/camera_movement.gd" id="2_un1fd"]
+[ext_resource type="PackedScene" uid="uid://cck82d5vemgey" path="res://scenes/ProgressBar.tscn" id="3_idp50"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fng27"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sqxt7"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_idp50"]
+viewport_path = NodePath("ProgressbarSprite/SubViewport")
+
+[node name="Player" type="CharacterBody3D" unique_id=1822465646]
 script = ExtResource("1_fng27")
 
-[node name="Pivot" type="Node3D" parent="."]
+[node name="Pivot" type="Node3D" parent="." unique_id=451796775]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" unique_id=713768220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_fng27")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1385650892]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_sqxt7")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=781673253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99072266, 0)
 spring_length = 3.0
 script = ExtResource("2_un1fd")
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=106651263]
+
+[node name="ProgressbarSprite" type="Sprite3D" parent="." unique_id=280340491]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.66071916, 1.3348203, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_idp50")
+
+[node name="SubViewport" type="SubViewport" parent="ProgressbarSprite" unique_id=591891810]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(82, 80)
+
+[node name="ProgressBar" parent="ProgressbarSprite/SubViewport" unique_id=2125840924 instance=ExtResource("3_idp50")]

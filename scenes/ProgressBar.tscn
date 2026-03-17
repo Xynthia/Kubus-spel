@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cck82d5vemgey"]
+
+[ext_resource type="Texture2D" uid="uid://0souef6duobi" path="res://assets/circle.png" id="1_4j5uq"]
+[ext_resource type="Texture2D" uid="uid://xmimhixge575" path="res://assets/circle2.png" id="2_sgqcy"]
+
+[node name="ProgressBar" type="TextureProgressBar" unique_id=805513368]
+offset_left = -17.0
+offset_top = -13.0
+offset_right = 101.0
+offset_bottom = 89.0
+fill_mode = 4
+texture_under = ExtResource("1_4j5uq")
+texture_progress = ExtResource("2_sgqcy")
