@@ -6,29 +6,41 @@
 [ext_resource type="PackedScene" uid="uid://cck82d5vemgey" path="res://scenes/ProgressBar.tscn" id="3_qhqgy"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_dqkch"]
-viewport_path = NodePath("ProgressbarSprite/SubViewport")
+viewport_path = NodePath("Sprite pivot/ProgressbarSprite/SubViewport")
 
 [node name="Player" type="Node3D" unique_id=380480609]
 script = ExtResource("1_dqkch")
 
 [node name="Cube" parent="." unique_id=1093545830 instance=ExtResource("1_g2els")]
-
-[node name="ProgressbarSprite" type="Sprite3D" parent="." unique_id=155864321]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.66071916, 1.3348203, 0)
-billboard = 1
-texture = SubResource("ViewportTexture_dqkch")
-
-[node name="SubViewport" type="SubViewport" parent="ProgressbarSprite" unique_id=1120495657]
-transparent_bg = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(82, 80)
-
-[node name="ProgressBar" parent="ProgressbarSprite/SubViewport" unique_id=850841575 instance=ExtResource("3_qhqgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=942394009]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 64
 spring_length = 3.0
 script = ExtResource("2_qhqgy")
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=403482195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+current = true
+
+[node name="Sprite pivot" type="Node3D" parent="." unique_id=741316993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ProgressbarSprite" type="Sprite3D" parent="Sprite pivot" unique_id=155864321]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.7226298, 0.2695949, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_dqkch")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite pivot/ProgressbarSprite" unique_id=1120495657]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(82, 80)
+
+[node name="ProgressBar" parent="Sprite pivot/ProgressbarSprite/SubViewport" unique_id=850841575 instance=ExtResource("3_qhqgy")]
+
+[node name="EraseChecker" type="RayCast3D" parent="." unique_id=813749753]
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0, 0.657998, 0.40408027, 1)

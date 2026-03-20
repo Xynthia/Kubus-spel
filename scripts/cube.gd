@@ -15,15 +15,12 @@ enum FACES {top, right, bottem, left, foward, back}
 @onready var vertices: Node3D = $Pivot/Vertices
 @onready var sides: Node3D = $Pivot/Sides
 
-
-
 @onready var face_1: Area3D = $Pivot/faces/face1
 @onready var face_2: Area3D = $Pivot/faces/face2
 @onready var face_3: Area3D = $Pivot/faces/face3
 @onready var face_4: Area3D = $Pivot/faces/face4
 @onready var face_5: Area3D = $Pivot/faces/face5
 @onready var face_6: Area3D = $Pivot/faces/face6
-
 
 @onready var _1: RayCast3D = $"Pivot/faces/1"
 @onready var _2: RayCast3D = $"Pivot/faces/2"
@@ -32,27 +29,27 @@ enum FACES {top, right, bottem, left, foward, back}
 @onready var _5: RayCast3D = $"Pivot/faces/5"
 @onready var _6: RayCast3D = $"Pivot/faces/6"
 
-@onready var a: RayCast3D = $Pivot/MeshInstance3D/Vertices/A
-@onready var b: RayCast3D = $Pivot/MeshInstance3D/Vertices/B
-@onready var c: RayCast3D = $Pivot/MeshInstance3D/Vertices/C
-@onready var d: RayCast3D = $Pivot/MeshInstance3D/Vertices/D
-@onready var e: RayCast3D = $Pivot/MeshInstance3D/Vertices/E
-@onready var f: RayCast3D = $Pivot/MeshInstance3D/Vertices/F
-@onready var g: RayCast3D = $Pivot/MeshInstance3D/Vertices/G
-@onready var h: RayCast3D = $Pivot/MeshInstance3D/Vertices/H
+@onready var a: RayCast3D = $Pivot/Vertices/A
+@onready var b: RayCast3D = $Pivot/Vertices/B
+@onready var c: RayCast3D = $Pivot/Vertices/C
+@onready var d: RayCast3D = $Pivot/Vertices/D
+@onready var e: RayCast3D = $Pivot/Vertices/E
+@onready var f: RayCast3D = $Pivot/Vertices/F
+@onready var g: RayCast3D = $Pivot/Vertices/G
+@onready var h: RayCast3D = $Pivot/Vertices/H
 
-@onready var ab: Node3D = $Pivot/Sides/AB
-@onready var bc: Node3D = $Pivot/Sides/BC
-@onready var cd: Node3D = $Pivot/Sides/CD
-@onready var da: Node3D = $Pivot/Sides/DA
-@onready var ae: Node3D = $Pivot/Sides/AE
-@onready var bf: Node3D = $Pivot/Sides/BF
-@onready var cg: Node3D = $Pivot/Sides/CG
-@onready var dh: Node3D = $Pivot/Sides/DH
-@onready var ef: Node3D = $Pivot/Sides/EF
-@onready var fg: Node3D = $Pivot/Sides/FG
-@onready var gh: Node3D = $Pivot/Sides/GH
-@onready var he: Node3D = $Pivot/Sides/HE
+@onready var ab: Area3D = $Pivot/Sides/AB
+@onready var bc: Area3D = $Pivot/Sides/BC
+@onready var cd: Area3D = $Pivot/Sides/CD
+@onready var da: Area3D = $Pivot/Sides/DA
+@onready var ae: Area3D = $Pivot/Sides/AE
+@onready var bf: Area3D = $Pivot/Sides/BF
+@onready var cg: Area3D = $Pivot/Sides/CG
+@onready var dh: Area3D = $Pivot/Sides/DH
+@onready var ef: Area3D = $Pivot/Sides/EF
+@onready var fg: Area3D = $Pivot/Sides/FG
+@onready var gh: Area3D = $Pivot/Sides/GH
+@onready var he: Area3D = $Pivot/Sides/HE
 
 @onready var current_face : RayCast3D = _3
 var next_face : Area3D 
@@ -101,6 +98,7 @@ func roll(dir : Vector3):
 	transform.origin += dir * cube_size
 	var b = mesh.global_transform.basis
 	pivot.transform = Transform3D.IDENTITY
+	pivot.position.y -= 0.5
 	mesh.position = Vector3(0, cube_size / 2, 0)
 	faces.position = Vector3(0, cube_size / 2, 0)
 	vertices.position = Vector3(0, cube_size / 2, 0)
@@ -143,13 +141,13 @@ func calculate_next_face(dir : DIR) -> bool:
 			return true
 	return false
 
-func check_if_bevel(side : Node3D) -> float:
+func check_if_bevel(side : Area3D) -> float:
 	if side.visible:
 		return FAST_DURATION
 	else:
 		return SLOW_DURATION
 
-func get_side_beteen_current_next() -> Node3D:
+func get_side_beteen_current_next() -> Area3D:
 	match current_face:
 		_1:
 			match next_face:

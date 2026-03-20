@@ -29,9 +29,6 @@ var rolling = false
 
 enum DIR {foward, backward, left, right}
 
-
-	
-
 func _physics_process(delta):
 	
 	if Input.is_action_pressed("move foward"):

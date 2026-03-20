@@ -23,16 +23,20 @@ size = Vector3(0.022472655, 1, 1)
 size = Vector3(0.021496093, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ufek"]
-albedo_color = Color(1, 0.43494228, 0.2621834, 1)
+albedo_color = Color(1, 0.435, 0.263, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8viuf"]
 material = SubResource("StandardMaterial3D_7ufek")
 size = Vector2(0.1, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0hq27"]
+size = Vector3(1, 0.11791992, 0.0847168)
+
 [node name="Cube" type="Node3D" unique_id=1537267651]
 script = ExtResource("1_7ufek")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=1090061153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" unique_id=1941189895]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -192,172 +196,259 @@ debug_shape_custom_color = Color(0.8660215, 0.72881407, 1.92523e-06, 1)
 [node name="Sides" type="Node3D" parent="Pivot" unique_id=2107506258]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="AB" type="Node3D" parent="Pivot/Sides" unique_id=360509762]
+[node name="AB" type="Area3D" parent="Pivot/Sides" unique_id=1462756203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0.46)
+visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/AB" unique_id=893525235]
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/AB" unique_id=848423676]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/AB/Node3D" unique_id=893525235]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/AB" unique_id=280110433]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/AB/Node3D" unique_id=280110433]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.050000012, 0.049999982)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="BC" type="Node3D" parent="Pivot/Sides" unique_id=1092165158]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Sides/AB" unique_id=1814351933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.057006836, -0.006957978)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="BC" type="Area3D" parent="Pivot/Sides" unique_id=968831538]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.46, 0.51, 0)
 visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/BC" unique_id=691001746]
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/BC" unique_id=580068186]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/BC/Node3D" unique_id=691001746]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/BC" unique_id=206700601]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/BC/Node3D" unique_id=206700601]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.050000012, 0.049999982)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CD" type="Node3D" parent="Pivot/Sides" unique_id=1438015605]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Sides/BC" unique_id=1969166346]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006957978, -0.05802703, -0.004091412)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="CD" type="Area3D" parent="Pivot/Sides" unique_id=1045010374]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.51, -0.46)
+visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/CD" unique_id=1419294439]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/CD" unique_id=1152820431]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/CD/Node3D" unique_id=1419294439]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/CD" unique_id=251522070]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/CD/Node3D" unique_id=251522070]
+transform = Transform3D(1.9106857e-15, 4.371138e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371138e-08, 0, -0.050000012, 0.049999982)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="DA" type="Node3D" parent="Pivot/Sides" unique_id=1911986480]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Pivot/Sides/CD" unique_id=515549295]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.006902278, -0.05802703, 0.0024602711)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="DA" type="Area3D" parent="Pivot/Sides" unique_id=1914448030]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.46, 0.51, 0)
 visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/DA" unique_id=602447485]
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/DA" unique_id=741181597]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/DA/Node3D" unique_id=602447485]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/DA" unique_id=1394525214]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/DA/Node3D" unique_id=1394525214]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.050000012, 0.049999982)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="AE" type="Node3D" parent="Pivot/Sides" unique_id=828843941]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Pivot/Sides/DA" unique_id=312360656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00034332235, -0.05802703, 0.009120017)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="AE" type="Area3D" parent="Pivot/Sides" unique_id=324464985]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0.46, 0, 0.51)
 visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/AE" unique_id=1004244729]
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/AE" unique_id=1955655860]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/AE/Node3D" unique_id=1004244729]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/AE" unique_id=1183237564]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/AE/Node3D" unique_id=1183237564]
+transform = Transform3D(3.5527137e-15, 4.3711392e-08, 1, 1, -4.3711392e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.050000012, 0.050000012)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="BF" type="Node3D" parent="Pivot/Sides" unique_id=657606377]
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Pivot/Sides/AE" unique_id=1246623499]
+transform = Transform3D(1, -4.3711392e-08, 4.371139e-08, -4.3711392e-08, -4.3711385e-08, 1, -4.371139e-08, -1, -4.371139e-08, -0.01989448, -0.048449457, -0.012210757)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="BF" type="Area3D" parent="Pivot/Sides" unique_id=1808376538]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.51, 0, 0.46)
 visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/BF" unique_id=1637472765]
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/BF" unique_id=1311257368]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/BF/Node3D" unique_id=1637472765]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/BF" unique_id=1816192410]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/BF/Node3D" unique_id=1816192410]
+transform = Transform3D(3.5527137e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05000004, 0.049999982)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CG" type="Node3D" parent="Pivot/Sides" unique_id=752847931]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Pivot/Sides/BF" unique_id=473699071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01989448, -0.06659827, -0.010988504)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="CG" type="Area3D" parent="Pivot/Sides" unique_id=1004763693]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -0.46, 0, -0.51)
 visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/CG" unique_id=363934771]
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/CG" unique_id=1267160068]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/CG/Node3D" unique_id=363934771]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/CG" unique_id=1378064037]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/CG/Node3D" unique_id=1378064037]
+transform = Transform3D(3.5527137e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.049999982, 0.049999952)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="DH" type="Node3D" parent="Pivot/Sides" unique_id=1973047903]
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Pivot/Sides/CG" unique_id=637008609]
+transform = Transform3D(1, -4.3711392e-08, -4.371139e-08, -4.3711392e-08, -4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -0.01989448, -0.04972151, -0.016598254)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="DH" type="Area3D" parent="Pivot/Sides" unique_id=2134012925]
 transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0.51, 0, -0.46)
 visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/DH" unique_id=227353828]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/DH" unique_id=1445530200]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/DH/Node3D" unique_id=227353828]
+transform = Transform3D(-4.371139e-08, 3.3407487e-22, 1, 0, 1, -2.6865683e-16, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/DH" unique_id=75119294]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/DH/Node3D" unique_id=75119294]
+transform = Transform3D(3.552714e-15, 4.371139e-08, 1, 1, -4.371138e-08, -2.6865683e-16, 4.371138e-08, 1, -4.371139e-08, 0, -0.05000007, 0.049999952)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="EF" type="Node3D" parent="Pivot/Sides" unique_id=1541148639]
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Pivot/Sides/DH" unique_id=556787241]
+transform = Transform3D(1, -8.742278e-08, -3.821371e-15, -8.742278e-08, -1, -8.742278e-08, 3.821371e-15, 8.742278e-08, -1, -0.01989448, -0.0622108, 0.0002784431)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="EF" type="Area3D" parent="Pivot/Sides" unique_id=1905182248]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.46, 0.51)
+visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/EF" unique_id=562190811]
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/EF" unique_id=722894291]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/EF/Node3D" unique_id=562190811]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/EF" unique_id=2090316853]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/EF/Node3D" unique_id=2090316853]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.050000012, 0.049999997)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="FG" type="Node3D" parent="Pivot/Sides" unique_id=1944399312]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Pivot/Sides/EF" unique_id=558002192]
+transform = Transform3D(-1, 0, 8.742278e-08, 7.642742e-15, -1, 8.742278e-08, 8.742278e-08, 8.742278e-08, 1, 0, -0.062256217, 0.015200736)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="FG" type="Area3D" parent="Pivot/Sides" unique_id=1291334131]
 transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -0.51, -0.46, 0)
 visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/FG" unique_id=2018382202]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/FG" unique_id=1710046028]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/FG/Node3D" unique_id=2018382202]
+transform = Transform3D(-4.371139e-08, 0, 1, -1.642028e-15, 1, 0, -1, -8.351872e-23, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/FG" unique_id=1701873117]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/FG/Node3D" unique_id=1701873117]
+transform = Transform3D(3.5527137e-15, 4.3711392e-08, 1, 1, -4.3711392e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.050000012, 0.049999997)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="GH" type="Node3D" parent="Pivot/Sides" unique_id=1840199325]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Pivot/Sides/FG" unique_id=64925207]
+transform = Transform3D(-1, 0, -8.742278e-08, 8.742278e-08, -4.371139e-08, -1, -3.821371e-15, -1, 4.371139e-08, -0.00034332467, -0.04360372, -0.014114227)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="GH" type="Area3D" parent="Pivot/Sides" unique_id=1582495179]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, -0.46, -0.51)
+visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/GH" unique_id=845998176]
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/GH" unique_id=1447544126]
+
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/GH/Node3D" unique_id=845998176]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/GH" unique_id=1583974528]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/GH/Node3D" unique_id=1583974528]
+transform = Transform3D(0, 4.371139e-08, 1, 1, -4.3711385e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.050000012, 0.049999997)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="HE" type="Node3D" parent="Pivot/Sides" unique_id=64873839]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Pivot/Sides/GH" unique_id=670772050]
+transform = Transform3D(-1, 0, 8.742278e-08, -8.742278e-08, -4.371139e-08, -1, 3.821371e-15, -1, 4.371139e-08, 3.059796e-09, -0.034999996, -0.013999999)
+shape = SubResource("BoxShape3D_0hq27")
+
+[node name="HE" type="Area3D" parent="Pivot/Sides" unique_id=1479617855]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0.51, -0.46, 0)
 visible = false
+collision_layer = 32
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/HE" unique_id=1374730263]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+[node name="Node3D" type="Node3D" parent="Pivot/Sides/HE" unique_id=1551266684]
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/HE" unique_id=407812537]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/HE/Node3D" unique_id=1374730263]
+transform = Transform3D(-4.371139e-08, 0, 1, 1.6420284e-15, 1, 0, -1, -8.351872e-23, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
+
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/HE/Node3D" unique_id=407812537]
+transform = Transform3D(3.5527137e-15, 4.3711385e-08, 1, 1, -4.3711385e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.050000012, 0.049999997)
+mesh = SubResource("PlaneMesh_8viuf")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Pivot/Sides/HE" unique_id=2037098743]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.00034332453, -0.040879965, -0.018953294)
+shape = SubResource("BoxShape3D_0hq27")
 
 [node name="CheckFaces" type="RayCast3D" parent="." unique_id=2072518644]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 target_position = Vector3(0, 0, 0)
 collision_mask = 64
 hit_from_inside = true

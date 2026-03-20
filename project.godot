@@ -80,6 +80,6 @@ return={
 
 [layer_names]
 
-3d_physics/layer_1="layer1"
+3d_physics/layer_6="sides"
 3d_physics/layer_7="Cube"
 3d_physics/layer_8="Floor"
