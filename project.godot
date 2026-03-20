@@ -16,12 +16,19 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Kubus game"
 run/main_scene="uid://c6pq4yvcrkqye"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*res://scripts/game_manager.gd"
+
+[display]
+
+window/size/initial_position_type=3
+window/size/borderless=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 
 [input]
 
@@ -74,4 +81,5 @@ return={
 [layer_names]
 
 3d_physics/layer_1="layer1"
+3d_physics/layer_7="Cube"
 3d_physics/layer_8="Floor"

@@ -1,26 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpxwjlydl2fa8"]
+[gd_scene format=3 uid="uid://cpxwjlydl2fa8"]
 
 [ext_resource type="Script" uid="uid://ccejaghoy56nd" path="res://scripts/cube.gd" id="1_7ufek"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_i7q2r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ufek"]
-size = Vector3(1, 0.001, 1)
+size = Vector3(1, 0.015148438, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8viuf"]
-size = Vector3(1, 1, 0.001)
+size = Vector3(1, 1, 0.019542968)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i7q2r"]
-size = Vector3(1, 0.001, 1)
+size = Vector3(1, 0.022106444, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0d7ej"]
-size = Vector3(1, 1, 0.001)
+size = Vector3(1, 1, 0.011120117)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fu8w0"]
-size = Vector3(0.001, 1, 1)
+size = Vector3(0.022472655, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_04wrr"]
-size = Vector3(0.001, 1, 1)
+size = Vector3(0.021496093, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ufek"]
 albedo_color = Color(1, 0.43494228, 0.2621834, 1)
@@ -29,331 +29,337 @@ albedo_color = Color(1, 0.43494228, 0.2621834, 1)
 material = SubResource("StandardMaterial3D_7ufek")
 size = Vector2(0.1, 1)
 
-[node name="Cube" type="Node3D"]
+[node name="Cube" type="Node3D" unique_id=1537267651]
 script = ExtResource("1_7ufek")
 
-[node name="Pivot" type="Node3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -0.5)
+[node name="Pivot" type="Node3D" parent="." unique_id=1090061153]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5, 0.49999997, -2.1855694e-08)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" unique_id=1941189895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_i7q2r")
 skeleton = NodePath("../..")
 
-[node name="faces" type="Node3D" parent="Pivot/MeshInstance3D"]
-
-[node name="1" type="RayCast3D" parent="Pivot/MeshInstance3D/faces"]
+[node name="faces" type="Node3D" parent="Pivot" unique_id=500493538]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
+
+[node name="1" type="RayCast3D" parent="Pivot/faces" unique_id=1866347226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 target_position = Vector3(0, 0.1, 0)
 collision_mask = 128
 debug_shape_custom_color = Color(1.1551381e-06, 0.8312632, 0.91277415, 1)
 
-[node name="2" type="RayCast3D" parent="Pivot/MeshInstance3D/faces"]
+[node name="2" type="RayCast3D" parent="Pivot/faces" unique_id=951956376]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
-visible = false
 target_position = Vector3(0, 0, 0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0, 0.83137256, 0.9137255, 1)
 
-[node name="3" type="RayCast3D" parent="Pivot/MeshInstance3D/faces"]
+[node name="3" type="RayCast3D" parent="Pivot/faces" unique_id=2064173362]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 target_position = Vector3(0, -0.1, 0)
 collision_mask = 128
 debug_shape_custom_color = Color(0, 0.83137256, 0.9137255, 1)
 
-[node name="4" type="RayCast3D" parent="Pivot/MeshInstance3D/faces"]
+[node name="4" type="RayCast3D" parent="Pivot/faces" unique_id=1244861559]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 target_position = Vector3(0, 0, -0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0, 0.83137256, 0.9137255, 1)
 
-[node name="5" type="RayCast3D" parent="Pivot/MeshInstance3D/faces"]
+[node name="5" type="RayCast3D" parent="Pivot/faces" unique_id=210785631]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 target_position = Vector3(0.1, 0, 0)
 collision_mask = 128
 debug_shape_custom_color = Color(0, 0.83137256, 0.9137255, 1)
 
-[node name="6" type="RayCast3D" parent="Pivot/MeshInstance3D/faces"]
+[node name="6" type="RayCast3D" parent="Pivot/faces" unique_id=239516511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 target_position = Vector3(-0.1, 0, 0)
 collision_mask = 128
 debug_shape_custom_color = Color(0, 0.83137256, 0.9137255, 1)
 
-[node name="face1" type="Area3D" parent="Pivot/MeshInstance3D/faces"]
-collision_layer = 2
+[node name="face1" type="Area3D" parent="Pivot/faces" unique_id=426848456]
+collision_layer = 64
+collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/MeshInstance3D/faces/face1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49950004, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/faces/face1" unique_id=1101536318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49242583, 0)
 shape = SubResource("BoxShape3D_7ufek")
+debug_color = Color(0.9986561, 0, 0.14815447, 0.41960785)
 
-[node name="face2" type="Area3D" parent="Pivot/MeshInstance3D/faces"]
-collision_layer = 2
+[node name="face2" type="Area3D" parent="Pivot/faces" unique_id=2138197305]
+collision_layer = 64
+collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/MeshInstance3D/faces/face2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4995)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/faces/face2" unique_id=1637373151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.49022853)
 shape = SubResource("BoxShape3D_8viuf")
+debug_color = Color(0.95997244, 5.7756904e-07, 0.5213464, 0.41960785)
 
-[node name="face3" type="Area3D" parent="Pivot/MeshInstance3D/faces"]
-collision_layer = 2
+[node name="face3" type="Area3D" parent="Pivot/faces" unique_id=1713271002]
+collision_layer = 64
+collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/MeshInstance3D/faces/face3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4995, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/faces/face3" unique_id=871789625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4889468, 0)
 shape = SubResource("BoxShape3D_i7q2r")
+debug_color = Color(0.849664, 0.374161, 1.92523e-07, 0.41960785)
 
-[node name="face4" type="Area3D" parent="Pivot/MeshInstance3D/faces"]
-collision_layer = 2
+[node name="face4" type="Area3D" parent="Pivot/faces" unique_id=1921555368]
+collision_layer = 64
+collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/MeshInstance3D/faces/face4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4995)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/faces/face4" unique_id=100311189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.49443996)
 shape = SubResource("BoxShape3D_0d7ej")
+debug_color = Color(0.48930687, 0.5850276, 0, 0.41960785)
 
-[node name="face5" type="Area3D" parent="Pivot/MeshInstance3D/faces"]
-collision_layer = 2
+[node name="face5" type="Area3D" parent="Pivot/faces" unique_id=2046651076]
+collision_layer = 64
+collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/MeshInstance3D/faces/face5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4995, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/faces/face5" unique_id=1027394259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4887637, 0, 0)
 shape = SubResource("BoxShape3D_fu8w0")
+debug_color = Color(0, 0.64823765, 0.19681937, 0.41960785)
 
-[node name="face6" type="Area3D" parent="Pivot/MeshInstance3D/faces"]
-collision_layer = 2
+[node name="face6" type="Area3D" parent="Pivot/faces" unique_id=473240296]
+collision_layer = 64
+collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/MeshInstance3D/faces/face6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4995, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/faces/face6" unique_id=1691952909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48925197, 0, 0)
 shape = SubResource("BoxShape3D_04wrr")
+debug_color = Color(0, 0.6, 0.69803923, 1)
 
-[node name="Vertices" type="Node3D" parent="Pivot/MeshInstance3D"]
+[node name="Vertices" type="Node3D" parent="Pivot" unique_id=595019681]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="A" type="RayCast3D" parent="Pivot/MeshInstance3D/Vertices"]
+[node name="A" type="RayCast3D" parent="Pivot/Vertices" unique_id=327445656]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
 visible = false
 target_position = Vector3(0.1, 0.1, 0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0.8660215, 0.72881407, 1.92523e-06, 1)
 
-[node name="B" type="RayCast3D" parent="Pivot/MeshInstance3D/Vertices"]
+[node name="B" type="RayCast3D" parent="Pivot/Vertices" unique_id=795363541]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0.5)
 visible = false
 target_position = Vector3(-0.1, 0.1, 0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0.8660215, 0.72881407, 1.92523e-06, 1)
 
-[node name="C" type="RayCast3D" parent="Pivot/MeshInstance3D/Vertices"]
+[node name="C" type="RayCast3D" parent="Pivot/Vertices" unique_id=1625037487]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -0.5)
 visible = false
 target_position = Vector3(-0.1, 0.1, -0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0.8660215, 0.72881407, 1.92523e-06, 1)
 
-[node name="D" type="RayCast3D" parent="Pivot/MeshInstance3D/Vertices"]
+[node name="D" type="RayCast3D" parent="Pivot/Vertices" unique_id=953972977]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -0.5)
 visible = false
 target_position = Vector3(0.1, 0.1, -0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0.8660215, 0.72881407, 1.92523e-06, 1)
 
-[node name="E" type="RayCast3D" parent="Pivot/MeshInstance3D/Vertices"]
+[node name="E" type="RayCast3D" parent="Pivot/Vertices" unique_id=721649654]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0.5)
 visible = false
 target_position = Vector3(0.1, -0.1, 0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0.8660215, 0.72881407, 1.92523e-06, 1)
 
-[node name="F" type="RayCast3D" parent="Pivot/MeshInstance3D/Vertices"]
+[node name="F" type="RayCast3D" parent="Pivot/Vertices" unique_id=2064801776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 0.5)
 visible = false
 target_position = Vector3(-0.1, -0.1, 0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0.8660215, 0.72881407, 1.92523e-06, 1)
 
-[node name="G" type="RayCast3D" parent="Pivot/MeshInstance3D/Vertices"]
+[node name="G" type="RayCast3D" parent="Pivot/Vertices" unique_id=10912644]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -0.5)
 target_position = Vector3(-0.1, -0.1, -0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0.8660215, 0.72881407, 1.92523e-06, 1)
 
-[node name="H" type="RayCast3D" parent="Pivot/MeshInstance3D/Vertices"]
+[node name="H" type="RayCast3D" parent="Pivot/Vertices" unique_id=568731331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.5)
 target_position = Vector3(0.1, -0.1, -0.1)
 collision_mask = 128
 debug_shape_custom_color = Color(0.8660215, 0.72881407, 1.92523e-06, 1)
 
-[node name="Sides" type="Node3D" parent="Pivot/MeshInstance3D"]
-visible = false
+[node name="Sides" type="Node3D" parent="Pivot" unique_id=2107506258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="AB" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="AB" type="Node3D" parent="Pivot/Sides" unique_id=360509762]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0.46)
-visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/AB"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/AB" unique_id=893525235]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/AB"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/AB" unique_id=280110433]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="BC" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="BC" type="Node3D" parent="Pivot/Sides" unique_id=1092165158]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.46, 0.51, 0)
 visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/BC"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/BC" unique_id=691001746]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/BC"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/BC" unique_id=206700601]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="CD" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="CD" type="Node3D" parent="Pivot/Sides" unique_id=1438015605]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.51, -0.46)
-visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/CD"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/CD" unique_id=1419294439]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/CD"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/CD" unique_id=251522070]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="DA" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="DA" type="Node3D" parent="Pivot/Sides" unique_id=1911986480]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.46, 0.51, 0)
 visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/DA"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/DA" unique_id=602447485]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/DA"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/DA" unique_id=1394525214]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="AE" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="AE" type="Node3D" parent="Pivot/Sides" unique_id=828843941]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0.46, 0, 0.51)
 visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/AE"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/AE" unique_id=1004244729]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/AE"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/AE" unique_id=1183237564]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="BF" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="BF" type="Node3D" parent="Pivot/Sides" unique_id=657606377]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.51, 0, 0.46)
 visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/BF"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/BF" unique_id=1637472765]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/BF"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/BF" unique_id=1816192410]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="CG" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="CG" type="Node3D" parent="Pivot/Sides" unique_id=752847931]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -0.46, 0, -0.51)
 visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/CG"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/CG" unique_id=363934771]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/CG"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/CG" unique_id=1378064037]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="DH" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="DH" type="Node3D" parent="Pivot/Sides" unique_id=1973047903]
 transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0.51, 0, -0.46)
 visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/DH"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/DH" unique_id=227353828]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/DH"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/DH" unique_id=75119294]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="EF" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="EF" type="Node3D" parent="Pivot/Sides" unique_id=1541148639]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.46, 0.51)
-visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/EF"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/EF" unique_id=562190811]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/EF"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/EF" unique_id=2090316853]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="FG" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="FG" type="Node3D" parent="Pivot/Sides" unique_id=1944399312]
 transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -0.51, -0.46, 0)
 visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/FG"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/FG" unique_id=2018382202]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/FG"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/FG" unique_id=1701873117]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="GH" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="GH" type="Node3D" parent="Pivot/Sides" unique_id=1840199325]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, -0.46, -0.51)
-visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/GH"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/GH" unique_id=845998176]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/GH"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/GH" unique_id=1583974528]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="HE" type="Node3D" parent="Pivot/MeshInstance3D/Sides"]
+[node name="HE" type="Node3D" parent="Pivot/Sides" unique_id=64873839]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0.51, -0.46, 0)
 visible = false
 
-[node name="mesh" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/HE"]
+[node name="mesh" type="MeshInstance3D" parent="Pivot/Sides/HE" unique_id=1374730263]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Sides/HE"]
+[node name="mesh2" type="MeshInstance3D" parent="Pivot/Sides/HE" unique_id=407812537]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.05, 0.05)
 mesh = SubResource("PlaneMesh_8viuf")
 skeleton = NodePath("../..")
 
-[node name="CheckFaces" type="RayCast3D" parent="."]
+[node name="CheckFaces" type="RayCast3D" parent="." unique_id=2072518644]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-target_position = Vector3(0.6, 0, 0)
-collision_mask = 2
+target_position = Vector3(0, 0, 0)
+collision_mask = 64
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
