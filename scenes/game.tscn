@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dinm5s6ahaqrw"]
+
+[node name="Game" type="Node3D" unique_id=1158153269 groups=["Scene"]]

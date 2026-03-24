@@ -4,15 +4,64 @@
 [ext_resource type="PackedScene" uid="uid://cpxwjlydl2fa8" path="res://scenes/cube.tscn" id="1_g2els"]
 [ext_resource type="Script" uid="uid://bnajprq2nargs" path="res://scripts/camera_movement.gd" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://cck82d5vemgey" path="res://scenes/ProgressBar.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://cedcmcs8od2b1" path="res://scenes/ui.tscn" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://dqavn78qvvbmb" path="res://assets/audio/freesound_community-pencil-eraser-107852.mp3" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://dkimiv2nocm0o" path="res://assets/audio/lightningbulb-spacebar-click-keyboard-199448.mp3" id="7_fjrip"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_dqkch"]
-viewport_path = NodePath("Sprite pivot/ProgressbarSprite/SubViewport")
+viewport_path = NodePath("Cube/Sprite pivot/ProgressbarSprite/SubViewport")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qlg0r"]
+radius = 0.15425918
+
+[sub_resource type="Curve" id="Curve_tuyoq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fjrip"]
+curve = SubResource("Curve_tuyoq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smehm"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+spread = 180.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, -0.9, 0)
+scale_min = 0.19999999
+scale_max = 0.39999998
+scale_curve = SubResource("CurveTexture_fjrip")
+color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+collision_mode = 1
+collision_friction = 0.3
+collision_bounce = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ur7pv"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_y4r1p"]
+material = SubResource("StandardMaterial3D_ur7pv")
 
 [node name="Player" type="Node3D" unique_id=380480609]
 script = ExtResource("1_dqkch")
 
 [node name="Cube" parent="." unique_id=1093545830 instance=ExtResource("1_g2els")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Sprite pivot" type="Node3D" parent="Cube" unique_id=741316993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="ProgressbarSprite" type="Sprite3D" parent="Cube/Sprite pivot" unique_id=155864321]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.7226298, 0.2695949, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_dqkch")
+
+[node name="SubViewport" type="SubViewport" parent="Cube/Sprite pivot/ProgressbarSprite" unique_id=1120495657]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(82, 80)
+
+[node name="ProgressBar" parent="Cube/Sprite pivot/ProgressbarSprite/SubViewport" unique_id=850841575 instance=ExtResource("3_qhqgy")]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=942394009]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -24,23 +73,32 @@ script = ExtResource("2_qhqgy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 current = true
 
-[node name="Sprite pivot" type="Node3D" parent="." unique_id=741316993]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="UI" parent="." unique_id=2090033340 instance=ExtResource("5_qlg0r")]
+mouse_filter = 2
 
-[node name="ProgressbarSprite" type="Sprite3D" parent="Sprite pivot" unique_id=155864321]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.7226298, 0.2695949, 0)
-billboard = 1
-texture = SubResource("ViewportTexture_dqkch")
-
-[node name="SubViewport" type="SubViewport" parent="Sprite pivot/ProgressbarSprite" unique_id=1120495657]
-transparent_bg = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(82, 80)
-
-[node name="ProgressBar" parent="Sprite pivot/ProgressbarSprite/SubViewport" unique_id=850841575 instance=ExtResource("3_qhqgy")]
-
-[node name="EraseChecker" type="RayCast3D" parent="." unique_id=813749753]
+[node name="EraseChecker" type="Area3D" parent="." unique_id=628520955]
 collision_mask = 32
-collide_with_areas = true
-collide_with_bodies = false
-debug_shape_custom_color = Color(0, 0.657998, 0.40408027, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EraseChecker" unique_id=396551377]
+shape = SubResource("SphereShape3D_qlg0r")
+
+[node name="erasing_sfx" type="AudioStreamPlayer3D" parent="." unique_id=211798453]
+stream = ExtResource("6_tuyoq")
+volume_db = -30.0
+autoplay = true
+
+[node name="eraserbits" type="GPUParticles3D" parent="." unique_id=1101745187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25403935, 0)
+emitting = false
+amount = 3
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_smehm")
+draw_pass_1 = SubResource("PrismMesh_y4r1p")
+
+[node name="racing_sfx" type="AudioStreamPlayer" parent="." unique_id=1637443419]
+stream = ExtResource("7_fjrip")
+
+[node name="sfx" type="AudioStreamPlayer3D" parent="." unique_id=814664126]
+
+[connection signal="area_shape_entered" from="EraseChecker" to="." method="_on_erase_checker_area_shape_entered"]

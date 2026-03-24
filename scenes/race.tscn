@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cl2b2owl20ng5"]
+
+[ext_resource type="Script" uid="uid://cj1ocr4rpgjqf" path="res://scripts/race.gd" id="1_8oh5l"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6u31k"]
+
+[sub_resource type="Sky" id="Sky_rwgxs"]
+sky_material = SubResource("ProceduralSkyMaterial_6u31k")
+
+[sub_resource type="Environment" id="Environment_8oh5l"]
+background_mode = 2
+sky = SubResource("Sky_rwgxs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrjie"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lrjie"]
+size = Vector3(19.856934, 6.4920654, 4.64209)
+
+[node name="Race" type="Node3D" unique_id=770432012]
+script = ExtResource("1_8oh5l")
+
+[node name="Environment" type="Node3D" parent="." unique_id=1912712244]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1982210449]
+environment = SubResource("Environment_8oh5l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=767636931]
+transform = Transform3D(1, 0, 0, 0, 0.42419943, 0.9055688, 0, -0.9055688, 0.42419943, 0, 0, 0)
+shadow_enabled = true
+
+[node name="race track" type="Node3D" parent="." unique_id=708763850]
+
+[node name="floor" type="CSGBox3D" parent="race track" unique_id=117676849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -19.103882)
+material_override = SubResource("StandardMaterial3D_lrjie")
+use_collision = true
+collision_layer = 128
+collision_mask = 0
+size = Vector3(20, 0.1, 58.207764)
+
+[node name="finish" type="Node3D" parent="race track" unique_id=905071738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3315334, -37.005447)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="race track/finish" unique_id=613602785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.729517, 0, 0)
+size = Vector3(0.5, 5, 0.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="race track/finish" unique_id=628754904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.773726, 0, 0)
+size = Vector3(0.5, 5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="race track/finish" unique_id=1267508924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11340809, 1.4932463, 0)
+size = Vector3(20, 2, 0.1)
+
+[node name="CSGMesh3D" type="CSGBox3D" parent="race track" unique_id=51255873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09586966, 5.121228)
+size = Vector3(20, 0.1, 0.5)
+
+[node name="finish_area" type="Area3D" parent="race track" unique_id=1878475179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36.98244)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="race track/finish_area" unique_id=1479806842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013916016, 2.7460327, -2.47818)
+shape = SubResource("BoxShape3D_lrjie")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="race track" unique_id=1648617024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -19.101318)
+size = Vector3(20, 0.1, 58.202637)
+
+[node name="player spawn" type="Node3D" parent="." unique_id=1653001499 groups=["PlayerSpawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.038, 0.5, 6.967)
+
+[node name="Cube spawn" type="Node3D" parent="." unique_id=2112667670 groups=["CPUSpawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.015, 0.5, 6.967)
+
+[connection signal="area_shape_entered" from="race track/finish_area" to="." method="_on_finish_area_area_shape_entered"]

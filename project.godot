@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Kubus game"
-run/main_scene="uid://c6pq4yvcrkqye"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -29,6 +29,12 @@ window/size/initial_position_type=3
 window/size/borderless=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+
+[global_group]
+
+PlayerSpawn=""
+CPUSpawn=""
+Scene=""
 
 [input]
 

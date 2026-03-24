@@ -1,7 +1,7 @@
 extends SpringArm3D
 
 @onready var camera_3d: Camera3D = $Camera3D
-@onready var sprite_pivot: Node3D = $"../Sprite pivot"
+
 
 func _physics_process(delta: float) -> void:
 	if GameManager.player.cube.rolling:
@@ -14,4 +14,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation.y -= event.relative.x * GameManager.player.mouse_sensitivity
 		rotation.x -= event.relative.y * GameManager.player.mouse_sensitivity
 		
-		sprite_pivot.rotation = rotation
+		GameManager.player.sprite_pivot.rotation = rotation

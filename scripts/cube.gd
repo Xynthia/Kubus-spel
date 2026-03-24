@@ -60,21 +60,7 @@ var cube_size = 1.0
 var rolling = false
 var duration : float = SLOW_DURATION
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_pressed("move foward"):
-		if calculate_next_face(DIR.foward):
-			roll(Vector3.FORWARD)
-	if Input.is_action_pressed("move back"):
-		if calculate_next_face(DIR.backward):
-			roll(Vector3.BACK)
-	if Input.is_action_pressed("move right"):
-		if calculate_next_face(DIR.right):
-			roll(Vector3.RIGHT)
-	if Input.is_action_pressed("move left"):
-		if calculate_next_face(DIR.left):
-			roll(Vector3.LEFT)
-		
+
 
 func roll(dir : Vector3):
 	# Do nothing if we're currently rolling.
@@ -136,8 +122,6 @@ func calculate_next_face(dir : DIR) -> bool:
 		var next_side = get_side_beteen_current_next()
 		if next_side:
 			duration = check_if_bevel(next_side)
-
-			print("curr: ", current_face, " next: ", next_face,  " side: ", next_side, " speed: ", duration)
 			return true
 	return false
 
