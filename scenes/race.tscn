@@ -15,6 +15,10 @@ sky = SubResource("Sky_rwgxs")
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8oh5l"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_lrjie"]
 size = Vector3(19.856934, 6.4920654, 4.64209)
 
@@ -54,6 +58,7 @@ size = Vector3(0.5, 5, 0.5)
 [node name="CSGBox3D4" type="CSGBox3D" parent="race track/finish" unique_id=1267508924]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11340809, 1.4932463, 0)
 size = Vector3(20, 2, 0.1)
+material = SubResource("StandardMaterial3D_8oh5l")
 
 [node name="CSGMesh3D" type="CSGBox3D" parent="race track" unique_id=51255873]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09586966, 5.121228)

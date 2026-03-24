@@ -3,8 +3,12 @@
 [ext_resource type="Script" uid="uid://ckxvey4i1ued0" path="res://scripts/cpu.gd" id="1_16h3v"]
 [ext_resource type="PackedScene" uid="uid://cpxwjlydl2fa8" path="res://scenes/cube.tscn" id="2_he47y"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16h3v"]
+albedo_color = Color(1, 0, 1, 1)
+
 [node name="CPU" type="Node3D" unique_id=735611106]
 script = ExtResource("1_16h3v")
 
 [node name="Cube" parent="." unique_id=1537267651 instance=ExtResource("2_he47y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_export = SubResource("StandardMaterial3D_16h3v")

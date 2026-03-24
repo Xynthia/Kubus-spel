@@ -7,6 +7,8 @@ const FAST_DURATION : float = 1.0
 enum DIR {foward, backward, left, right}
 enum FACES {top, right, bottem, left, foward, back}
 
+@export var mesh_export : StandardMaterial3D 
+
 @onready var check_faces: RayCast3D = $CheckFaces
 
 @onready var pivot: Node3D = $Pivot
@@ -60,7 +62,9 @@ var cube_size = 1.0
 var rolling = false
 var duration : float = SLOW_DURATION
 
-
+func _ready() -> void:
+	if mesh_export:
+		mesh.set_surface_override_material(0, mesh_export)
 
 func roll(dir : Vector3):
 	# Do nothing if we're currently rolling.
