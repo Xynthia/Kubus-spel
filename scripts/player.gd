@@ -24,7 +24,6 @@ const CHISEL_SCRAPE_LIGHT_DEBRIS = preload("uid://cuj8y73yjmdik")
 @onready var erase_checker: Area3D = $EraseChecker
 @onready var eraserbits: GPUParticles3D = $eraserbits
 @onready var bottem_side: RayCast3D = $BottemSide
-@onready var check_faces: RayCast3D = $CheckFaces
 
 
 
@@ -69,9 +68,6 @@ func _physics_process(delta: float) -> void:
 		erasing_sfx.volume_db = -12
 	else:
 		erasing_sfx.volume_db -= 1
-	
-	
-	check_faces.global_position = cube.global_position
 	
 
 func erase() -> void:
@@ -120,7 +116,7 @@ func round_to_dec(num, digit):
 	return round(num * pow(10.0, digit)) / pow(10.0, digit)
 
 func exit_transformation_mode() -> void:
-	set_on_right_face()
+	cube.rotation = rotation_cube_pickup
 	position.y -= floating_amount
 	in_transformation_modus = false
 

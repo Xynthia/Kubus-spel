@@ -9,7 +9,7 @@ enum FACES {top, right, bottem, left, foward, back}
 
 @export var mesh_export : StandardMaterial3D 
 
-
+@onready var check_faces: RayCast3D = $CheckFaces
 
 @onready var pivot: Node3D = $Pivot
 @onready var mesh: MeshInstance3D = $Pivot/MeshInstance3D
@@ -57,7 +57,6 @@ enum FACES {top, right, bottem, left, foward, back}
 
 @onready var current_face : RayCast3D = _3
 var next_face : Area3D 
-var check_faces: RayCast3D 
 
 @onready var pivot_origin_pos : Vector3 = pivot.position
 @onready var pivot_rotation : Vector3 = pivot.rotation
@@ -68,7 +67,6 @@ var duration : float = SLOW_DURATION
 func _ready() -> void:
 	if mesh_export:
 		mesh.set_surface_override_material(0, mesh_export)
-	
 
 func roll(dir : Vector3):
 	# Do nothing if we're currently rolling.
@@ -109,36 +107,28 @@ func calculate_next_face(dir : DIR) -> bool:
 	if rolling:
 		return false
 	
-	if !check_faces:
-		print(get_owner())
-		if get_owner() == GameManager.player:
-			check_faces = GameManager.player.check_faces
-		elif get_owner() == GameManager.cpu:
-			check_faces
+	var distance := 0.6
+	check_faces.enabled = true
 	
-	if check_faces:
-		var distance := 0.6
-		check_faces.enabled = true
+	match dir:
+		DIR.foward:
+			check_faces.target_position = Vector3.FORWARD 
+		DIR.backward:
+			check_faces.target_position = Vector3.BACK 
+		DIR.left:
+			check_faces.target_position = Vector3.LEFT 
+		DIR.right:
+			check_faces.target_position = Vector3.RIGHT 
+	
+	if check_faces.is_colliding():
+		current_face = check_face_on()
+		next_face = check_faces.get_collider()
+		check_faces.enabled = false
 		
-		match dir:
-			DIR.foward:
-				check_faces.target_position = Vector3.FORWARD 
-			DIR.backward:
-				check_faces.target_position = Vector3.BACK 
-			DIR.left:
-				check_faces.target_position = Vector3.LEFT 
-			DIR.right:
-				check_faces.target_position = Vector3.RIGHT 
-		
-		if check_faces.is_colliding():
-			current_face = check_face_on()
-			next_face = check_faces.get_collider()
-			check_faces.enabled = false
-			
-			var next_side = get_side_beteen_current_next()
-			if next_side:
-				duration = check_if_bevel(next_side)
-				return true
+		var next_side = get_side_beteen_current_next()
+		if next_side:
+			duration = check_if_bevel(next_side)
+			return true
 	return false
 
 func check_if_bevel(side : Area3D) -> float:

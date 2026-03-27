@@ -108,12 +108,4 @@ collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color(0, 0, 0, 0.94509804)
 
-[node name="CheckFaces" type="RayCast3D" parent="." unique_id=282476528]
-target_position = Vector3(0, 0.5, 0)
-collision_mask = 64
-hit_from_inside = true
-collide_with_areas = true
-collide_with_bodies = false
-debug_shape_custom_color = Color(0.99999994, 0.44929814, 0.98089105, 1)
-
 [connection signal="area_shape_entered" from="EraseChecker" to="." method="_on_erase_checker_area_shape_entered"]

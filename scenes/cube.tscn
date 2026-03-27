@@ -457,3 +457,11 @@ skeleton = NodePath("../../..")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Pivot/Sides/HE" unique_id=2037098743]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.00034332453, -0.040879965, -0.018953294)
 shape = SubResource("BoxShape3D_0hq27")
+
+[node name="CheckFaces" type="RayCast3D" parent="." unique_id=1892071198]
+target_position = Vector3(0, 0.5, 0)
+collision_mask = 64
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.99999994, 0.44929814, 0.98089105, 1)
