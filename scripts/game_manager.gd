@@ -8,7 +8,7 @@ var PLAYER = preload("uid://bwjn310u18tya").instantiate()
 
 
 var WORLD = preload("uid://c6pq4yvcrkqye").instantiate()
-var RACE = preload("uid://cl2b2owl20ng5").instantiate()
+var RACE : Race = preload("uid://cl2b2owl20ng5").instantiate()
 
 var current_scene : Node3D
 var started_race: bool = false
@@ -63,9 +63,8 @@ func start_race_area() -> void:
 func spawn(spawn_scene) -> void:
 	for nodes in spawn_scene.get_children():
 		if nodes.is_in_group("PlayerSpawn"):
-			
-			#player.global_position.y = 0.5
 			if player.cube:
+				player.cube.reset_bevel()
 				player.global_position = nodes.global_position
 				player.cube.global_position = player.global_position
 				player.spring_arm_3d.global_position = player.global_position

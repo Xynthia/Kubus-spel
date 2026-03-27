@@ -22,6 +22,91 @@ albedo_color = Color(1, 1, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lrjie"]
 size = Vector3(19.856934, 6.4920654, 4.64209)
 
+[sub_resource type="Animation" id="Animation_8oh5l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 5, 2.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.7853982, 3.1415927, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lrjie"]
+resource_name = "move to player"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(2.9086595, 2.9086595),
+"update": 0,
+"values": [Vector3(0, 5, 2.5), Vector3(5.038, 1, 6.967)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(2.9086595, 2.9086595),
+"update": 0,
+"values": [Vector3(-0.7853982, 3.1415927, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1ls3"]
+_data = {
+&"RESET": SubResource("Animation_8oh5l"),
+&"move to player": SubResource("Animation_lrjie")
+}
+
 [node name="Race" type="Node3D" unique_id=770432012]
 script = ExtResource("1_8oh5l")
 
@@ -60,6 +145,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11340809, 1.4932463, 0)
 size = Vector3(20, 2, 0.1)
 material = SubResource("StandardMaterial3D_8oh5l")
 
+[node name="Label3D" type="Label3D" parent="race track/finish" unique_id=124273900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11340809, 1.4932463, 0.0615654)
+text = "testing"
+font_size = 328
+outline_size = 0
+uppercase = true
+
 [node name="CSGMesh3D" type="CSGBox3D" parent="race track" unique_id=51255873]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09586966, 5.121228)
 size = Vector3(20, 0.1, 0.5)
@@ -80,5 +172,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.038, 0.5, 6.967)
 
 [node name="Cube spawn" type="Node3D" parent="." unique_id=2112667670 groups=["CPUSpawn"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.015, 0.5, 6.967)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2107122850]
+transform = Transform3D(-1, 6.181724e-08, -6.181724e-08, 0, 0.70710677, 0.70710677, 8.742278e-08, 0.70710677, -0.70710677, 0, 5, 2.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=49874881]
+libraries/ = SubResource("AnimationLibrary_l1ls3")
 
 [connection signal="area_shape_entered" from="race track/finish_area" to="." method="_on_finish_area_area_shape_entered"]

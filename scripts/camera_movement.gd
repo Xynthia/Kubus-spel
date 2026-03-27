@@ -4,9 +4,13 @@ extends SpringArm3D
 
 
 func _physics_process(delta: float) -> void:
+	GameManager.player.sprite_pivot.global_position = GameManager.player.cube.global_position
+	GameManager.player.sprite_pivot.global_position -= GameManager.player.sprite_pivot.position
 	if GameManager.player.cube.rolling:
 		global_position = GameManager.player.cube.next_face.global_position
 		global_position.y = 1
+	
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	#camera movement
@@ -14,4 +18,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation.y -= event.relative.x * GameManager.player.mouse_sensitivity
 		rotation.x -= event.relative.y * GameManager.player.mouse_sensitivity
 		
-		GameManager.player.sprite_pivot.rotation = rotation
+		
+		

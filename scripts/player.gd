@@ -12,10 +12,9 @@ const CHISEL_SCRAPE_LIGHT_DEBRIS = preload("uid://cuj8y73yjmdik")
 @onready var cube: Cube = $Cube
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 
-
-@onready var progressbar_sprite: Sprite3D = $"Cube/Sprite pivot/ProgressbarSprite"
-@onready var progress_bar: TextureProgressBar = $"Cube/Sprite pivot/ProgressbarSprite/SubViewport/ProgressBar"
-@onready var sprite_pivot: Node3D = $"Cube/Sprite pivot"
+@onready var sprite_pivot: Node3D = $"SpringArm3D/Sprite pivot"
+@onready var progressbar_sprite: Sprite3D = $"SpringArm3D/Sprite pivot/ProgressbarSprite"
+@onready var progress_bar: TextureProgressBar = $"SpringArm3D/Sprite pivot/ProgressbarSprite/SubViewport/ProgressBar"
 
 @onready var erasing_sfx: AudioStreamPlayer3D = $erasing_sfx
 @onready var racing_sfx: AudioStreamPlayer = $racing_sfx
@@ -24,6 +23,9 @@ const CHISEL_SCRAPE_LIGHT_DEBRIS = preload("uid://cuj8y73yjmdik")
 
 @onready var erase_checker: Area3D = $EraseChecker
 @onready var eraserbits: GPUParticles3D = $eraserbits
+@onready var bottem_side: RayCast3D = $BottemSide
+@onready var check_faces: RayCast3D = $CheckFaces
+
 
 
 @onready var ui: UI = $UI
@@ -68,6 +70,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		erasing_sfx.volume_db -= 1
 	
+	
+	check_faces.global_position = cube.global_position
+	
 
 func erase() -> void:
 	eraserbits.emitting = true
@@ -79,20 +84,48 @@ func acces_transformation_mode() -> void:
 	spring_arm_3d.rotation = start_rotation_camera
 	
 	erase_checker.global_position = cube.global_position
-	erase_checker.global_position.y -= 0.5
+	erase_checker.global_position.y -= 0.8
 	
 	rotation_cube_pickup = cube.rotation
 	current_hold_left_mouse_btn_duration = 0
 	
-	position.y += floating_amount
+	position += Vector3.UP
+
+func check_which_face_closer_to_ground() -> Area3D:
+	var face : Area3D
+	bottem_side.global_position = cube.global_position
+	bottem_side.target_position = Vector3.DOWN
+	face = bottem_side.get_collider()
+	return face
+
+func check_which_face_is_front() -> Area3D:
+	var face : Area3D
+	bottem_side.global_position = cube.global_position
+	bottem_side.target_position = Vector3.FORWARD
+	face = bottem_side.get_collider()
+	return face
+
+func set_on_right_face() -> void:
+	var ground_side = check_which_face_closer_to_ground()
+	var foward_side = check_which_face_is_front()
+	
+	var x = snapped(cube.rotation_degrees.x, 90)
+	var y = snapped(cube.rotation_degrees.y, 90)
+	var z = snapped(cube.rotation_degrees.z, 90)
+
+	cube.rotation_degrees = Vector3(x, y, z)
+	
+
+func round_to_dec(num, digit):
+	return round(num * pow(10.0, digit)) / pow(10.0, digit)
 
 func exit_transformation_mode() -> void:
+	set_on_right_face()
 	position.y -= floating_amount
-	cube.rotation = rotation_cube_pickup
 	in_transformation_modus = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if GameManager.current_scene == GameManager.WORLD || GameManager.current_scene == GameManager.RACE && GameManager.started_race:
+	if GameManager.current_scene == GameManager.WORLD || GameManager.current_scene == GameManager.RACE && GameManager.started_race && not GameManager.finished_race:
 		if Input.is_action_pressed("move foward"):
 			if cube.calculate_next_face(cube.DIR.foward):
 				cube.roll(Vector3.FORWARD)

@@ -44,6 +44,7 @@ func _on_button_pressed() -> void:
 func _on_start_race_pressed() -> void:
 	start_race.visible = false
 	label.visible = true
+	GameManager.RACE.play_intro_animation()
 	GameManager.player.racing_sfx.play()
 	timer.start()
 
